@@ -453,11 +453,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   debrisContainer: {fileID: 453740804}
   smallDebris:
-  - {fileID: 615668045938598417, guid: 6d97cd14b8a578940b25802e1bef2855, type: 3}
+  - {fileID: 5298387046453836768, guid: 4979d494a71d2ac479245f24c3c287d9, type: 3}
+  - {fileID: 6397968240965828389, guid: 31c4914641a65a24983d1bbfb5db7179, type: 3}
+  - {fileID: 6012866888145836323, guid: 808e4a17dcfe1d44a90579b49ae9c0db, type: 3}
   mediumDebris:
-  - {fileID: 6722104177301944383, guid: 6a7b37f7c7dcba84fbc94154d4b9b095, type: 3}
+  - {fileID: 3126022379364703781, guid: d4b38053da4d5d248ac78fe08cd62289, type: 3}
+  - {fileID: 4171299717208252345, guid: 0da248708664527409c6d8d550bf07ed, type: 3}
+  - {fileID: 487167467890181535, guid: 428ed84aee32cbc46ace71941f8e8f1a, type: 3}
   largeDebris:
-  - {fileID: 1340788233980463267, guid: bcd89f08c79af9d42ae229bd044ef731, type: 3}
+  - {fileID: 2807005598497610727, guid: 4c520106cfdb17f40bc2fd5b2b47f353, type: 3}
+  - {fileID: 9017336597225520376, guid: fd6920ef618797d498dd5c315e0cf7d8, type: 3}
   jsonFile: {fileID: 4900000, guid: 231e190161ae23349bbc9f233829470c, type: 3}
 --- !u!4 &390955939
 Transform:
