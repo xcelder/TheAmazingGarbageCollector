@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Orbit : MonoBehaviour
 {
-    private Vector3 orbitAxis;
-    private float revsPerSecond;
+    [SerializeField] private Vector3 orbitAxis;
+    [SerializeField] private float revsPerSecond;
 
 
     void Update()
