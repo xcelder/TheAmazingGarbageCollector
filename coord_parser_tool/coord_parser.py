@@ -14,32 +14,36 @@ class DebObject:
         self.revs_per_day = revs_per_day
 
 
-def parse_coordinates(raw_line):
-    pass
+class Parser:
 
-def write_file(deb_objects):
-    final_path = "%s/output.json" % os.getcwd()
-    output = open(final_path, "w+")
+    def __init__(self, data_file_name, size_file_name=""):
+        self.data_file_name = data_file_name
+        self.size_file_name = size_file_name
 
-    deb_objs_json = json.dumps(deb_objects)
+        self.data_file = open(self.data_file_name, 'r')
+        self.deb_objects = []
 
-    output.write(deb_objs_json)
-    output.close()
+    def write_file(self):
+        final_path = "%s/../The Amazing Garbage Collector/Assets/Data/GarbageData.json" % os.getcwd()
+        output = open(final_path, "w+")
 
-    print("Created file: %s" % final_path)
+        output_json = dict(debris=self.deb_objects)
 
+        deb_objs_json = json.dumps(output_json)
 
-def parser(file_name):
+        output.write(deb_objs_json)
+        output.close()
 
-    deb_objects = []
+        print("Created file: %s" % final_path)
 
-    with open(file_name, 'r') as file:
+    def parse(self):
+
         while True:
-            line0 = file.readline()
+            line0 = self.data_file.readline()
             if not line0:
                 break
-            line1 = file.readline() 
-            line2 = file.readline()
+            line1 = self.data_file.readline() 
+            line2 = self.data_file.readline()
 
             if ' DEB' not in line0:
                 continue
@@ -63,12 +67,14 @@ def parser(file_name):
 
             deb_object = DebObject(name, lat1, lon1, lat2, lon2, alt, revs_per_day)
 
-            deb_objects.append(deb_object.__dict__)
+            self.deb_objects.append(deb_object.__dict__)
+            
+        self.data_file.close()
 
-    write_file(deb_objects)
+        self.write_file()
 
     
 if __name__ == "__main__":
-    file_name = sys.argv[1]
-    parser(file_name=file_name)
+    data_file_name = sys.argv[1]
+    Parser(data_file_name=data_file_name).parse()
 
