@@ -4,7 +4,7 @@ import json
 import os
 
 class DebObject:
-    def __init__(self, name, lat1, lon1, lat2, lon2, alt, revs_per_day):
+    def __init__(self, name, lat1, lon1, lat2, lon2, alt, revs_per_day, size):
         self.name = name
         self.lat1 = lat1
         self.lon1 = lon1
@@ -12,16 +12,38 @@ class DebObject:
         self.lon2 = lon2
         self.alt = alt
         self.revs_per_day = revs_per_day
+        self.size = size
 
 
 class Parser:
 
-    def __init__(self, data_file_name, size_file_name=""):
+    def __init__(self, data_file_name, size_file_name):
         self.data_file_name = data_file_name
         self.size_file_name = size_file_name
 
         self.data_file = open(self.data_file_name, 'r')
+        self.size_file = open(self.size_file_name, 'r')
         self.deb_objects = []
+        self.size_map = dict()
+
+        self.load_size_data_map()
+
+    def load_size_data_map(self):
+        while True:
+            element = self.size_file.readline().strip()
+
+            if not element:
+                break
+
+            splitted_element = element.split(' ')
+
+            if len(splitted_element) < 2:
+                continue
+
+            norad_id, size = splitted_element
+
+            self.size_map.update({int(norad_id): size})
+            
 
     def write_file(self):
         final_path = "%s/../The Amazing Garbage Collector/Assets/Data/GarbageData.json" % os.getcwd()
@@ -65,7 +87,9 @@ class Parser:
 
             revs_per_day = tle_rec._n
 
-            deb_object = DebObject(name, lat1, lon1, lat2, lon2, alt, revs_per_day)
+            size = self.size_map.get(tle_rec.catalog_number)
+
+            deb_object = DebObject(name, lat1, lon1, lat2, lon2, alt, revs_per_day, size)
 
             self.deb_objects.append(deb_object.__dict__)
             
@@ -75,6 +99,7 @@ class Parser:
 
     
 if __name__ == "__main__":
-    data_file_name = sys.argv[1]
-    Parser(data_file_name=data_file_name).parse()
+    data_file_name = "%s/3le.txt" % os.getcwd()
+    size_file_name = "%s/size_data.txt" % os.getcwd()
+    Parser(data_file_name=data_file_name, size_file_name=size_file_name).parse()
 
