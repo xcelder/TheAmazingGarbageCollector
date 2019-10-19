@@ -17,5 +17,10 @@ public class DebrisData
     public float lon2;
     public float alt;
     public float revs_per_day;
-    public float size;
+    public DebrisSize size;
+}
+
+public enum DebrisSize
+{
+    Small, Medium, Large
 }

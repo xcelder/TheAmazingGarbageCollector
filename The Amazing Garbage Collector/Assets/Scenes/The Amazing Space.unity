@@ -257,12 +257,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   debrisContainer: {fileID: 453740804}
-  smallDebris: {fileID: 615668045938598417, guid: 6d97cd14b8a578940b25802e1bef2855,
-    type: 3}
-  mediumDebris: {fileID: 6722104177301944383, guid: 6a7b37f7c7dcba84fbc94154d4b9b095,
-    type: 3}
-  largeDebris: {fileID: 1340788233980463267, guid: bcd89f08c79af9d42ae229bd044ef731,
-    type: 3}
+  smallDebris:
+  - {fileID: 615668045938598417, guid: 6d97cd14b8a578940b25802e1bef2855, type: 3}
+  mediumDebris:
+  - {fileID: 6722104177301944383, guid: 6a7b37f7c7dcba84fbc94154d4b9b095, type: 3}
+  largeDebris:
+  - {fileID: 1340788233980463267, guid: bcd89f08c79af9d42ae229bd044ef731, type: 3}
   jsonFile: {fileID: 4900000, guid: 231e190161ae23349bbc9f233829470c, type: 3}
 --- !u!4 &390955939
 Transform:
