@@ -7,9 +7,9 @@ public class GarbageCreator : MonoBehaviour
     [SerializeField] private Transform debrisContainer;
 
     [Header("Debris Prefabs")]
-    [SerializeField] private GameObject smallDebris;
-    [SerializeField] private GameObject mediumDebris;
-    [SerializeField] private GameObject largeDebris;
+    [SerializeField] private GameObject[] smallDebris;
+    [SerializeField] private GameObject[] mediumDebris;
+    [SerializeField] private GameObject[] largeDebris;
 
     [Header("Debris Data")]
     [SerializeField] private TextAsset jsonFile;
@@ -25,8 +25,10 @@ public class GarbageCreator : MonoBehaviour
             // Calculate movement Vector using its next position.
             Vector3 nextPosition = LatLongToVector3(debrisData[i].lat2, debrisData[i].lon2, debrisData[i].alt + EARTH_BASE_RADIUS);
             Vector3 movementVector = nextPosition - currentPosition;
+            // Choose the debris to instantiate depending on its size.
+            DebrisSize size = debrisData[i].size;
             // Create the debris object.
-            GameObject debris = CreateDebris(smallDebris, debrisContainer, currentPosition);
+            GameObject debris = CreateDebris(GetRandomDebrisOfSize(size), debrisContainer, currentPosition);
             // Set the debris orbit.
             Orbit orbit = debris.GetComponent<Orbit>();
             if (orbit != null)
@@ -45,6 +47,26 @@ public class GarbageCreator : MonoBehaviour
         return new Vector3(Xpos, Ypos, Zpos);
     }
 
+
+    private GameObject[] GetDebrisCollection(DebrisSize size)
+    {
+        switch (size)
+        {
+            default:
+            case DebrisSize.Small:
+                return smallDebris;
+            case DebrisSize.Medium:
+                return mediumDebris;
+            case DebrisSize.Large:
+                return largeDebris;
+        }
+    }
+
+    private GameObject GetRandomDebrisOfSize(DebrisSize size)
+    {
+        GameObject[] debrisCollection = GetDebrisCollection(size);
+        return debrisCollection[Random.Range(0, debrisCollection.Length)];
+    }
 
     private GameObject CreateDebris(GameObject prefab, Transform container, Vector3 localPosition)
     {
