@@ -5,16 +5,16 @@ using UnityEngine;
 public class GCShipMovement : MonoBehaviour
 {
 
+
     public float speedH = 1.0f;
     public float speedV = 1.0f;
 
-    private float yaw = 0.0f;
-    private float pitch = 0.0f;
-
     private int acceleration = 1;
 
-    private int currentSpeed = 0;
-    private float currentShipSpeed = 0f;
+    private int currentForwardSpeed = 0;
+    private float currenForwardtShipSpeed = 0f;
+    private int currentLateralSpeed = 0;
+    private float currentLateraltShipSpeed = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -25,27 +25,54 @@ public class GCShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        UpdateCameraPosition();
+        CameraMovement();
+        ShipMovement();
+    }
 
+    void ShipMovement()
+    {
+        // Forward
         if ((Input.GetKey("up") || Input.GetKey("w")))
         {
-            currentSpeed += acceleration;
+            currentForwardSpeed += acceleration;
         }
         else if ((Input.GetKey("down") || Input.GetKey("s")))
         {
-            currentSpeed -= acceleration;
+            currentForwardSpeed -= acceleration;
         }
 
-        currentShipSpeed = Mathf.Lerp(currentShipSpeed, currentSpeed, Time.deltaTime * acceleration);
+        // Lateral
 
-        transform.position += transform.TransformDirection(Vector3.down) * currentShipSpeed * Time.deltaTime;
+        if ((Input.GetKey("right") || Input.GetKey("d")))
+        {
+            currentLateralSpeed += acceleration;
+        }
+        else if ((Input.GetKey("left") || Input.GetKey("a")))
+        {
+            currentLateralSpeed -= acceleration;
+        }
+
+        currenForwardtShipSpeed = Mathf.Lerp(currenForwardtShipSpeed, currentForwardSpeed, Time.deltaTime * acceleration);
+        currentLateraltShipSpeed = Mathf.Lerp(currentLateraltShipSpeed, currentLateralSpeed, Time.deltaTime * acceleration);
+
+        transform.position += transform.TransformDirection(Vector3.forward) * currenForwardtShipSpeed * Time.deltaTime;
+        transform.position += transform.TransformDirection(Vector3.right) * currentLateraltShipSpeed * Time.deltaTime;
     }
 
-    void UpdateCameraPosition()
+    void CameraMovement()
     {
-        yaw -= speedH * Input.GetAxis("Mouse X");
-        pitch += speedV * Input.GetAxis("Mouse Y");
+        HideCursor();
 
-        transform.eulerAngles = new Vector3(pitch, 0.0f, yaw);
+        float horizontalMovement = speedH * Input.GetAxis("Mouse X");
+        float verticalMovement = -speedV * Input.GetAxis("Mouse Y");
+
+        transform.RotateAround(transform.position, transform.up, horizontalMovement);
+        transform.RotateAround(transform.position, transform.right, verticalMovement);
+
+    }
+
+    void HideCursor()
+    {
+        Cursor.visible = false;
     }
 }
