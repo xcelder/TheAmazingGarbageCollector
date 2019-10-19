@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class GarbageCreator : MonoBehaviour
 {
@@ -10,34 +8,35 @@ public class GarbageCreator : MonoBehaviour
     [SerializeField] private GameObject smallDebris;
     [SerializeField] private GameObject mediumDebris;
     [SerializeField] private GameObject largeDebris;
-    [Header("Test Garbage Amounts")]
-    [SerializeField] private int smallAmount;
-    [SerializeField] private int mediumAmount;
-    [SerializeField] private int largeAmount;
+
+
+    [SerializeField] private TextAsset jsonFile;
 
 
     void Start()
     {
         // Create the initial debris.
-        for (int i = 0; i < smallAmount; i++)
+        DebrisContainer debrisData = JsonUtility.FromJson<DebrisContainer>(jsonFile.text);
+        for (int i = 0; i < debrisData.debrisData.Length; i++)
         {
-            GameObject debris = CreateDebris(smallDebris, debrisContainer);
-        }
-        for (int i = 0; i < mediumAmount; i++)
-        {
-            GameObject debris = CreateDebris(mediumDebris, debrisContainer);
-        }
-        for (int i = 0; i < largeAmount; i++)
-        {
-            GameObject debris = CreateDebris(largeDebris, debrisContainer);
+            CreateDebris(smallDebris, debrisContainer, LatLongToVector3(debrisData.debrisData[i].lat, debrisData.debrisData[i].lon, debrisData.debrisData[i].alt + 3000));
         }
     }
 
 
-    private GameObject CreateDebris(GameObject prefab, Transform container)
+    private Vector3 LatLongToVector3(float latitude, float longitude, float height)
     {
-        GameObject debris = Instantiate(smallDebris, debrisContainer);
-        // TODO: Set random position.
+        float Xpos = height * Mathf.Cos(latitude) * Mathf.Cos(longitude);
+        float Ypos = height * Mathf.Cos(latitude) * Mathf.Sin(longitude);
+        float Zpos = height * Mathf.Sin(latitude);
+        return new Vector3(Xpos, Ypos, Zpos);
+    }
+
+
+    private GameObject CreateDebris(GameObject prefab, Transform container, Vector3 localPosition)
+    {
+        GameObject debris = Instantiate(prefab, container);
+        debris.transform.localPosition = localPosition;
         // TODO: Set random rotation.
         return debris;
     }
