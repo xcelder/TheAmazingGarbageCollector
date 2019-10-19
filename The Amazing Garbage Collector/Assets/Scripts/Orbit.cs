@@ -10,7 +10,7 @@ public class Orbit : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(orbitAxis, revsPerSecond / 360f * Time.deltaTime);
+        transform.RotateAround(new Vector3(), orbitAxis, revsPerSecond / 360f * Time.deltaTime);
     }
 
 
