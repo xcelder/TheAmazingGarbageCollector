@@ -19,7 +19,18 @@ public class GarbageCreator : MonoBehaviour
         DebrisContainer debrisData = JsonUtility.FromJson<DebrisContainer>(jsonFile.text);
         for (int i = 0; i < debrisData.debrisData.Length; i++)
         {
-            CreateDebris(smallDebris, debrisContainer, LatLongToVector3(debrisData.debrisData[i].lat, debrisData.debrisData[i].lon, debrisData.debrisData[i].alt + 3000));
+            Vector3 currentPosition = LatLongToVector3(debrisData.debrisData[i].lat1, debrisData.debrisData[i].lon1, debrisData.debrisData[i].alt + 3000);
+            // Calculate movement Vector using its next position.
+            Vector3 nextPosition = LatLongToVector3(debrisData.debrisData[i].lat2, debrisData.debrisData[i].lon2, debrisData.debrisData[i].alt + 3000);
+            Vector3 movementVector = nextPosition - currentPosition;
+            // Create the debris object.
+            GameObject debris = CreateDebris(smallDebris, debrisContainer, currentPosition);
+            // Set the debris orbit.
+            Orbit orbit = debris.GetComponent<Orbit>();
+            if (orbit != null)
+            {
+                orbit.SetOrbit(Vector3.Cross(-currentPosition, movementVector), debrisData.debrisData[i].revs_per_day / (24));
+            }
         }
     }
 
