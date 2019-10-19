@@ -4,7 +4,7 @@
 [Serializable]
 public class DebrisContainer
 {
-    public DebrisData[] debrisData;
+    public DebrisData[] debris;
 }
 
 [Serializable]
