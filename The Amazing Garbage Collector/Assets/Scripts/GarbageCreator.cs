@@ -2,6 +2,8 @@
 
 public class GarbageCreator : MonoBehaviour
 {
+    private const int EARTH_BASE_RADIUS = 3000;
+
     [SerializeField] private Transform debrisContainer;
 
     [Header("Debris Prefabs")]
@@ -9,17 +11,28 @@ public class GarbageCreator : MonoBehaviour
     [SerializeField] private GameObject mediumDebris;
     [SerializeField] private GameObject largeDebris;
 
-
+    [Header("Debris Data")]
     [SerializeField] private TextAsset jsonFile;
 
 
     void Start()
     {
         // Create the initial debris.
-        DebrisContainer debrisData = JsonUtility.FromJson<DebrisContainer>(jsonFile.text);
-        for (int i = 0; i < debrisData.debrisData.Length; i++)
+        DebrisData[] debrisData = JsonUtility.FromJson<DebrisContainer>(jsonFile.text).debris;
+        for (int i = 0; i < debrisData.Length; i++)
         {
-            CreateDebris(smallDebris, debrisContainer, LatLongToVector3(debrisData.debrisData[i].lat, debrisData.debrisData[i].lon, debrisData.debrisData[i].alt + 3000));
+            Vector3 currentPosition = LatLongToVector3(debrisData[i].lat1, debrisData[i].lon1, debrisData[i].alt + EARTH_BASE_RADIUS);
+            // Calculate movement Vector using its next position.
+            Vector3 nextPosition = LatLongToVector3(debrisData[i].lat2, debrisData[i].lon2, debrisData[i].alt + EARTH_BASE_RADIUS);
+            Vector3 movementVector = nextPosition - currentPosition;
+            // Create the debris object.
+            GameObject debris = CreateDebris(smallDebris, debrisContainer, currentPosition);
+            // Set the debris orbit.
+            Orbit orbit = debris.GetComponent<Orbit>();
+            if (orbit != null)
+            {
+                orbit.SetOrbit(Vector3.Cross(-currentPosition, movementVector), debrisData[i].revs_per_day * 100);
+            }
         }
     }
 
