@@ -3,7 +3,37 @@ guid: c3c2f18f0dab941cfa6e01c5bcfdc13d
 ModelImporter:
   serializedVersion: 26
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color
+    second: {fileID: 2100000, guid: 51484dafef82f45b9a8dcf49a99e15e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glow
+    second: {fileID: 2100000, guid: 624113f3aebf74314a28be68b64f3654, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Main
+    second: {fileID: 2100000, guid: 0507414eacb1d4dbbb39ecee66588431, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Red Lights
+    second: {fileID: 2100000, guid: 0e65ca7df22854caba02e27d879569b3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Secondary
+    second: {fileID: 2100000, guid: 51484dafef82f45b9a8dcf49a99e15e8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window
+    second: {fileID: 2100000, guid: 51484dafef82f45b9a8dcf49a99e15e8, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
