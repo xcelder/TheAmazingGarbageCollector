@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e1c88d2e54b7914c9425a158be042a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDegPerSec: 2
+  minDegPerSec: -5
   maxDegPerSec: 5
 --- !u!1 &6905184550324726805
 GameObject:
