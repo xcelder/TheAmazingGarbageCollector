@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1945173510}
   - component: {fileID: 1945173509}
   - component: {fileID: 1945173508}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Disintegrator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
