@@ -29,10 +29,9 @@ public class TargetDistance : MonoBehaviour
 
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.transform != null)
+        if (Physics.Raycast(ray, out hit, 1200) && 
+            hit.transform != null)
         {
-
-
             distancePanel.SetActive(true);
             distanceLabel.text = (hit.distance - cameraOffset) * 2 + " Km";
 
