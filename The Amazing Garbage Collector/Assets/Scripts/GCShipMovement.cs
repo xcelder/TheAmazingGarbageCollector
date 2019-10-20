@@ -9,17 +9,23 @@ public class GCShipMovement : MonoBehaviour
     public float speedH = 1.0f;
     public float speedV = 1.0f;
 
+    [SerializeField]
     private int acceleration = 1;
 
-    private int currentForwardSpeed = 0;
+    [SerializeField]
+    private int deceleration = 2;
+
+    public int currentForwardSpeed = 0;
     private float currenForwardtShipSpeed = 0f;
     private int currentLateralSpeed = 0;
     private float currentLateraltShipSpeed = 0f;
 
+    private Rigidbody shipBody;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        shipBody = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -50,6 +56,11 @@ public class GCShipMovement : MonoBehaviour
         else if ((Input.GetKey("left") || Input.GetKey("a")))
         {
             currentLateralSpeed -= acceleration;
+        }
+        else if (currentLateralSpeed > 0)
+        {
+            currentLateralSpeed -= acceleration;
+            currentLateralSpeed = Mathf.Max(currentLateralSpeed, 0);
         }
 
         currenForwardtShipSpeed = Mathf.Lerp(currenForwardtShipSpeed, currentForwardSpeed, Time.deltaTime * acceleration);
