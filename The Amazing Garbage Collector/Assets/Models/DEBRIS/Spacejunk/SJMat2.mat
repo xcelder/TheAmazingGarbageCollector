@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RockByDonm
+  m_Name: SJMat2
   m_Shader: {fileID: -6465566751694194690, guid: e6b5bc9bd8b5b466e87ef338d2301189,
     type: 3}
   m_ShaderKeywords: 
@@ -34,7 +34,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - Texture2D_E9CC00B4:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 01dbb65cd939a402bbcbfb37bd7a9067, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
