@@ -12,9 +12,10 @@ GameObject:
   - component: {fileID: 2599505247271885458}
   - component: {fileID: 7710526884532314076}
   - component: {fileID: -1869853390509361075}
+  - component: {fileID: 2810250489972933526}
   m_Layer: 0
   m_Name: Large Junk 01
-  m_TagString: Untagged
+  m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -58,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 6150308019109546552, guid: 7f0d6a7e8c10e4d1f8b13c9f9ce44201, type: 3}
+  - {fileID: 2100000, guid: 5c884943a0d864d039d89768385851e7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,3 +94,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitAxis: {x: 0, y: 0, z: 0}
   revsPerSecond: 0
+--- !u!65 &2810250489972933526
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017336597225520376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.7868066, y: 1.3098987, z: 1.1581858}
+  m_Center: {x: -0.26702985, y: 0.07402562, z: 0}

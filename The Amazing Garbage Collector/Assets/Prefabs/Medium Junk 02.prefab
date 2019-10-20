@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8449440135065832529}
   m_Layer: 0
   m_Name: Medium Junk 02
-  m_TagString: Untagged
+  m_TagString: Debris
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8100237926120225680, guid: 7f0d6a7e8c10e4d1f8b13c9f9ce44201, type: 3}
+  - {fileID: 2100000, guid: e712d3134c3a4475ba4f86971252c65b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

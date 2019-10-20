@@ -12,11 +12,13 @@ public class TargetDistance : MonoBehaviour
     [SerializeField]
     private TMP_Text distanceLabel;
 
+    private float cameraOffset = 0;
+
     private 
     // Start is called before the first frame update
     void Start()
     {
-
+        cameraOffset = Vector3.Distance(Camera.main.transform.position, transform.position);
     }
 
     // Update is called once per frame
@@ -29,8 +31,10 @@ public class TargetDistance : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, Mathf.Infinity) && hit.transform != null)
         {
+
+
             distancePanel.SetActive(true);
-            distanceLabel.text = hit.distance / 2 + " Km";
+            distanceLabel.text = (hit.distance - cameraOffset) * 2 + " Km";
 
         }
         else
