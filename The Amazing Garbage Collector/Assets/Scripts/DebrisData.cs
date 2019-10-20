@@ -22,5 +22,5 @@ public class DebrisData
 
 public enum DebrisSize
 {
-    Small, Medium, Large
+    Small, Medium, Large, Elon
 }

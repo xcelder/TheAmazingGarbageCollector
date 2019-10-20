@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3521573539662349580}
   - component: {fileID: 3819948447160093310}
   - component: {fileID: 5228045782113593612}
-  - component: {fileID: -8401493698590731378}
   m_Layer: 0
   m_Name: SpaceJunk9
   m_TagString: Untagged
@@ -79,17 +78,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-8401493698590731378
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5273014918218604146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1c88d2e54b7914c9425a158be042a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDegPerSec: 2
-  maxDegPerSec: 5

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7710526884532314076}
   - component: {fileID: -1869853390509361075}
   - component: {fileID: 2810250489972933526}
+  - component: {fileID: -4362554758128439470}
   m_Layer: 0
   m_Name: Large Junk 01
   m_TagString: Debris
@@ -107,3 +108,17 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.7868066, y: 1.3098987, z: 1.1581858}
   m_Center: {x: -0.26702985, y: 0.07402562, z: 0}
+--- !u!114 &-4362554758128439470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9017336597225520376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1c88d2e54b7914c9425a158be042a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDegPerSec: 2
+  maxDegPerSec: 5

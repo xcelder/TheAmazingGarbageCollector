@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5298003620054344882}
   - component: {fileID: 2960976683021227617}
   - component: {fileID: 8449440135065832529}
+  - component: {fileID: -1792576052852420269}
   m_Layer: 0
   m_Name: Medium Junk 02
   m_TagString: Debris
@@ -107,3 +108,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   orbitAxis: {x: 0, y: 0, z: 0}
   revsPerSecond: 0
+--- !u!114 &-1792576052852420269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487167467890181535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e1c88d2e54b7914c9425a158be042a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minDegPerSec: 2
+  maxDegPerSec: 5

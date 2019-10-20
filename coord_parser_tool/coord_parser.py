@@ -3,10 +3,12 @@ import ephem
 import json
 import os
 
+
 class SizeObject:
     SMALL = 0
     MEDIUM = 1
     LARGE = 2
+    ELON = 3
 
     def __init__(self, norad_id, size):
         self.id = int(norad_id)
@@ -54,6 +56,16 @@ class DebObject:
         self.revs_per_day = revs_per_day
         self.size = size
 
+class Elon(DebObject):
+    def __init__(self):
+        self.name = "Elon's Roadster"
+        self.lat1 = -0.3
+        self.lon1 = 3
+        self.lat2 = -0.27
+        self.lon2 = 2.27
+        self.alt = 2000
+        self.revs_per_day = 16
+        self.size = SizeObject.ELON
 
 class Parser:
 
@@ -61,6 +73,7 @@ class Parser:
         self.data_file = open(data_file_name, 'r')
         self.deb_objects = []
         self.sizes_map = self.load_size_data_map(size_file_name)
+        self.elon = Elon().__dict__
 
     @staticmethod
     def load_size_data_map(size_file_name):
@@ -109,6 +122,7 @@ class Parser:
                 self.deb_objects.append(deb_object.__dict__)
 
             
+        self.deb_objects.append(self.elon)
         self.data_file.close()
 
         self.write_file()
