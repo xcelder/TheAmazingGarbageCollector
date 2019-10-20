@@ -10,6 +10,7 @@ public class GarbageCreator : MonoBehaviour
     [SerializeField] private GameObject[] smallDebris;
     [SerializeField] private GameObject[] mediumDebris;
     [SerializeField] private GameObject[] largeDebris;
+    [SerializeField] private GameObject[] elon;
 
     [Header("Debris Data")]
     [SerializeField] private TextAsset jsonFile;
@@ -19,6 +20,7 @@ public class GarbageCreator : MonoBehaviour
     {
         // Create the initial debris.
         DebrisData[] debrisData = JsonUtility.FromJson<DebrisContainer>(jsonFile.text).debris;
+
         for (int i = 0; i < debrisData.Length; i++)
         {
             Vector3 currentPosition = LatLongToVector3(debrisData[i].lat1, debrisData[i].lon1, debrisData[i].alt + EARTH_BASE_RADIUS);
@@ -59,6 +61,8 @@ public class GarbageCreator : MonoBehaviour
                 return mediumDebris;
             case DebrisSize.Large:
                 return largeDebris;
+            case DebrisSize.Elon:
+                return elon;
         }
     }
 
