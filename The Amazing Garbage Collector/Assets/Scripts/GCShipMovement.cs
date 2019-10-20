@@ -13,12 +13,17 @@ public class GCShipMovement : MonoBehaviour
     private int acceleration = 1;
 
     [SerializeField]
-    private int deceleration = 2;
+    private int lateralAcceleration = 3;
+
+    [SerializeField]
+    private int verticalAcceleration = 3;
 
     public int currentForwardSpeed = 0;
     private float currenForwardtShipSpeed = 0f;
     private int currentLateralSpeed = 0;
     private float currentLateraltShipSpeed = 0f;
+    private int currentVerticalSpeed = 0;
+    private float currentVerticalShipSpeed = 0f;
 
     private Rigidbody shipBody;
 
@@ -51,23 +56,57 @@ public class GCShipMovement : MonoBehaviour
 
         if ((Input.GetKey("right") || Input.GetKey("d")))
         {
-            currentLateralSpeed += acceleration;
+            currentLateralSpeed += lateralAcceleration;
         }
         else if ((Input.GetKey("left") || Input.GetKey("a")))
         {
-            currentLateralSpeed -= acceleration;
+            currentLateralSpeed -= lateralAcceleration;
         }
-        else if (currentLateralSpeed > 0)
+        else if (currentLateralSpeed != 0)
         {
-            currentLateralSpeed -= acceleration;
-            currentLateralSpeed = Mathf.Max(currentLateralSpeed, 0);
+            if (currentLateralSpeed > 0)
+            {
+                currentLateralSpeed -= lateralAcceleration;
+                currentLateralSpeed = Mathf.Max(currentLateralSpeed, 0);
+            }
+            else
+            {
+                currentLateralSpeed += lateralAcceleration;
+                currentLateralSpeed = Mathf.Min(currentLateralSpeed, 0);
+            }
+        }
+
+        // Vertical
+
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            currentVerticalSpeed -= verticalAcceleration;
+        }
+        else if (Input.GetKey(KeyCode.Space))
+        {
+            currentVerticalSpeed += verticalAcceleration;
+        }
+        else if (currentVerticalSpeed != 0)
+        {
+            if (currentVerticalSpeed > 0)
+            {
+                currentVerticalSpeed -= verticalAcceleration;
+                currentVerticalSpeed = Mathf.Max(currentVerticalSpeed, 0);
+            }
+            else
+            {
+                currentVerticalSpeed += verticalAcceleration;
+                currentVerticalSpeed = Mathf.Min(currentVerticalSpeed, 0);
+            }
         }
 
         currenForwardtShipSpeed = Mathf.Lerp(currenForwardtShipSpeed, currentForwardSpeed, Time.deltaTime * acceleration);
         currentLateraltShipSpeed = Mathf.Lerp(currentLateraltShipSpeed, currentLateralSpeed, Time.deltaTime * acceleration);
+        currentVerticalShipSpeed = Mathf.Lerp(currentVerticalShipSpeed, currentVerticalSpeed, Time.deltaTime * acceleration);
 
         transform.position += transform.TransformDirection(Vector3.forward) * currenForwardtShipSpeed * Time.deltaTime;
         transform.position += transform.TransformDirection(Vector3.right) * currentLateraltShipSpeed * Time.deltaTime;
+        transform.position += transform.TransformDirection(Vector3.up) * currentVerticalShipSpeed * Time.deltaTime;
     }
 
     void CameraMovement()
