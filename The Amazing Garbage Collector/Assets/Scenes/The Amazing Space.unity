@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18865588, g: 0.23019266, b: 0.19747028, a: 1}
+  m_IndirectSpecularColor: {r: 0.18869194, g: 0.23018667, b: 0.19746283, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -227,6 +227,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   degreesPerSecond: 3
+  axis: {x: 0, y: 0, z: 0}
 --- !u!1 &98533626
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,11 +1380,15 @@ MonoBehaviour:
   acceleration: 1
   lateralAcceleration: 3
   verticalAcceleration: 3
+  lateralDecceleration: 6
+  verticalDecceleration: 6
   leftGas: {fileID: 1015382520}
   topGas: {fileID: 242304060}
   rightGas: {fileID: 1719989363}
   bottomGas: {fileID: 1339748186}
   currentForwardSpeed: 0
+  currentLateralShipSpeed: 0
+  currentVerticalShipSpeed: 0
 --- !u!54 &1941824875
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1670,7 +1675,7 @@ GameObject:
   - component: {fileID: 2110226424}
   - component: {fileID: 2110226427}
   - component: {fileID: 2110226426}
-  - component: {fileID: 2110226428}
+  - component: {fileID: 2110226425}
   m_Layer: 0
   m_Name: Clouds
   m_TagString: Untagged
@@ -1692,6 +1697,20 @@ Transform:
   m_Father: {fileID: 31077421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2110226425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2110226423}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9e954dfc5efe59b89e914dea805a0a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  degreesPerSecond: 1.5
+  axis: {x: 0, y: 1, z: 50}
 --- !u!23 &2110226426
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1738,20 +1757,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110226423}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &2110226428
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2110226423}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e1c88d2e54b7914c9425a158be042a7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  minDegPerSec: 0
-  maxDegPerSec: 0
 --- !u!1001 &2117813509
 PrefabInstance:
   m_ObjectHideFlags: 0

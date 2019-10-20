@@ -3,9 +3,10 @@
 public class EarthRotation : MonoBehaviour
 {
     [SerializeField] private float degreesPerSecond;
+    [SerializeField] private Vector3 axis;
 
     void Update()
     {
-        transform.Rotate(Vector3.up, degreesPerSecond * Time.deltaTime);
+        transform.Rotate(axis, degreesPerSecond * Time.deltaTime);
     }
 }
